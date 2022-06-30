@@ -7,24 +7,54 @@ seeCarrito = document.getElementById("seeCarrito");
 const productos = [
   {
     id: 1,
-    name: "libro 1",
+    name: "on the road",
+    author: "Jack Kerouac",
     price: 300,
     img:
-      "https://imgs.search.brave.com/S_hPRfYZWh8dJjI_xpSv9N1ix1ISpScKE8BpRKBWYa8/rs:fit:304:225:1/g:ce/aHR0cHM6Ly90c2Ux/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC40/blZGMFlBdzM5Tjl5/TzV0N0MyM0h3SGFM/aiZwaWQ9QXBp",
+      "https://imgs.search.brave.com/PG6VRGVRdd1tat50p4zbkf4eZejQVmLSXnyikv6sZfQ/rs:fit:346:225:1/g:ce/aHR0cHM6Ly90c2U0/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5z/eGVESlRoNnNFWDZk/VXhhcjJnTkNnSGFL/SiZwaWQ9QXBp",
   },
   {
     id: 2,
-    name: "libro 2",
+    name: "The Subterraneans",
+    author: "Jack Kerouac",
     price: 300,
     img:
-      "https://imgs.search.brave.com/S_hPRfYZWh8dJjI_xpSv9N1ix1ISpScKE8BpRKBWYa8/rs:fit:304:225:1/g:ce/aHR0cHM6Ly90c2Ux/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC40/blZGMFlBdzM5Tjl5/TzV0N0MyM0h3SGFM/aiZwaWQ9QXBp",
+      "https://imgs.search.brave.com/xjuT1rKjFLtTvqpYLzm9WnQuJhjNsEYA_BjY0dc6DzY/rs:fit:169:225:1/g:ce/aHR0cHM6Ly90c2Uy/LmV4cGxpY2l0LmJp/bmcubmV0L3RoP2lk/PU9JUC56N0pWWExu/MlNRS2pnMFZJNU50/S1ZnQUFBQSZwaWQ9/QXBp",
   },
   {
     id: 3,
-    name: "libro 3",
+    name: "The Dharma Bums",
+    author: "Jack Kerouac",
     price: 300,
     img:
-      "https://imgs.search.brave.com/S_hPRfYZWh8dJjI_xpSv9N1ix1ISpScKE8BpRKBWYa8/rs:fit:304:225:1/g:ce/aHR0cHM6Ly90c2Ux/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC40/blZGMFlBdzM5Tjl5/TzV0N0MyM0h3SGFM/aiZwaWQ9QXBp",
+      "https://imgs.search.brave.com/z18VKGHuzGbR8NKqeHitdlz1jLdJkAIJdFFNpiq3W-w/rs:fit:174:266:1/g:ce/aHR0cDovL2VjeC5p/bWFnZXMtYW1hem9u/LmNvbS9pbWFnZXMv/SS81MUJ4UmI4M2FI/TC5fU1kyNjRfQk8x/LDIwNCwyMDMsMjAw/X1FMNDBfLmpwZw",
+  },
+
+  {
+    id: 4,
+    name: "Junky",
+    author: "William Burroghs ",
+    price: 300,
+    img:
+      "https://imgs.search.brave.com/D2bD3wS_KSc2Gmt_vj7ptMfalnolARp_jqdJCdgpNAk/rs:fit:600:770:1/g:ce/aHR0cHM6Ly9pbWcu/ZGlzY29ncy5jb20v/NHlualBRbHd5R0Fr/Y3ZqRWpPVEFJZEs1/blgwPS9maXQtaW4v/NjAweDc3MC9maWx0/ZXJzOnN0cmlwX2lj/YygpOmZvcm1hdChq/cGVnKTptb2RlX3Jn/YigpOnF1YWxpdHko/OTApL2Rpc2NvZ3Mt/aW1hZ2VzL1ItMjYz/ODAzMS0xMjk0NDM2/NDcwLmpwZWcuanBn",
+  },
+
+  {
+    id: 5,
+    name: "Naked Lunch",
+    author: "William Burroghs ",
+    price: 300,
+    img:
+      "https://imgs.search.brave.com/53RKwp_6XkdBbQsMhwo5GmIx6afUjf2qIszchgbII-g/rs:fit:471:700:1/g:ce/aHR0cHM6Ly9yc3B1/bGwtc3VwZXJ2ZXJ0/Lm5ldGRuYS1zc2wu/Y29tL2ltYWdlcy9j/b3ZlcnMvbmFrZWRf/bHVuY2gvbmFrZWRf/bHVuY2gudWsuY2Fs/ZGVyLjE5NjQuanBn",
+  },
+
+  {
+    id: 6,
+    name: "The Place of Dead Roads",
+    author: "William Burroghs ",
+    price: 300,
+    img:
+      "https://imgs.search.brave.com/AoA7HjebrOBG0smAYcPFKVocF04KY9BzzUtnJQhdr60/rs:fit:326:500:1/g:ce/aHR0cHM6Ly9waWN0/dXJlcy5hYmVib29r/cy5jb20vaXNibi85/NzgwMTQxMTg5Nzk2/LWVzLTMwMC5qcGc",
   },
 ];
 
@@ -32,16 +62,20 @@ let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 productos.forEach((product) => {
   let content = document.createElement("div");
+  content.className = "card";
   content.innerHTML = `
                 <img src="${product.img}">
-                <h3>${product.name}</h3>
-                
+                <div class="cardInfo">
+                <h3>${product.name} </h3>
+                <h5>${product.author}</h5>
+                <h4 class="price">${product.price} $</h4>
+                </div>
             `;
   shopContent.append(content);
 
   let comprar = document.createElement("button");
   comprar.className = "comprar";
-  comprar.innerText = "comprar";
+  comprar.innerText = "Add to Cart";
 
   content.append(comprar);
 
@@ -70,6 +104,7 @@ const paintCarritoElements = () => {
             <img src="${product.img}">
             <h3>${product.name}</h3>
             <h4>${product.price} $</h4>
+           
             `;
     carritoContent.append(contentCarrito);
 
