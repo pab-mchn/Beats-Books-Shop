@@ -85,6 +85,7 @@ productos.forEach((product) => {
     carrito.push({
       id: product.id,
       name: product.name,
+      author: product.author,
       img: product.img,
       price: product.price,
     });
@@ -106,10 +107,8 @@ const paintCarritoElements = () => {
     contentCarrito.className = "modalContent";
 
     contentCarrito.innerHTML = `
-            <h2>${product.name}</h2>
-            <h4>${product.price} $</h4>
-            
-            `;
+            <h4>${product.author} - ${product.name} - ${product.price}$ </h4>`;
+
     carritoContent.append(contentCarrito);
     deleteProduct = document.createElement("button");
     deleteProduct.className = "delete";
@@ -120,6 +119,12 @@ const paintCarritoElements = () => {
     //call de function for delete item
     deleteProduct.addEventListener("click", deleteProductItem);
   });
+
+  const total = carrito.reduce((acc, el) => acc + el.price, 0);
+  const totalBuying = document.createElement("div");
+  totalBuying.className = "totalBuying";
+  totalBuying.innerHTML = `total:  ${total} $`;
+  carritoContent.append(totalBuying);
 };
 
 // When the user clicks anywhere outside of the modal, close it
