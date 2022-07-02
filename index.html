@@ -5,13 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
-    <title>Document</title>
+    <script src="https://kit.fontawesome.com/ee3d08c0a8.js" crossorigin="anonymous"></script>
+    <title>Beats books shop</title>
   </head>
 
   <body>
-    <div id="carrito-content"></div>
-    <button id="seeCarrito">ver carrito</button>
-    <button id="finishBuying">finishBuying</button>
+    <div class="nav-container">
+      <nav class="navbar">
+        <h1 id="navbar-logo">Beats.</h1>
+        <i id="seeCarrito" class="fa-solid fa-cart-shopping"></i>
+      </nav>
+    </div>
+
+    <div id="carrito-content" class="modal"></div>
+
+    <!--<button id="finishBuying">finishBuying</button>-->
     <div id="totalCarrito"></div>
 
     <div
@@ -22,7 +30,7 @@
       "
     >
       <div class="bannerContainer">
-        <h1>Beat Generation books shop</h1>
+        <h1>Beats Books Shop</h1>
         <p>The right place to find books of the beat generation</p>
         <a class="btn btn-flat" href="#shopContent">Start now</a>
       </div>

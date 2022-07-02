@@ -7,7 +7,7 @@ seeCarrito = document.getElementById("seeCarrito");
 const productos = [
   {
     id: 1,
-    name: "on the road",
+    name: "On The Road",
     author: "Jack Kerouac",
     price: 300,
     img:
@@ -50,11 +50,11 @@ const productos = [
 
   {
     id: 6,
-    name: "The Place of Dead Roads",
+    name: " Nova Express",
     author: "William Burroghs ",
     price: 300,
     img:
-      "https://imgs.search.brave.com/AoA7HjebrOBG0smAYcPFKVocF04KY9BzzUtnJQhdr60/rs:fit:326:500:1/g:ce/aHR0cHM6Ly9waWN0/dXJlcy5hYmVib29r/cy5jb20vaXNibi85/NzgwMTQxMTg5Nzk2/LWVzLTMwMC5qcGc",
+      "https://imgs.search.brave.com/C1aUiQuErxG0_mfx-JymphQ-1gvD3GZCzrpdQpClPyU/rs:fit:984:1200:1/g:ce/aHR0cHM6Ly8zLmJw/LmJsb2dzcG90LmNv/bS8tX3ZzMlg1eXJK/YlUvVXFEdXRQUGpk/NkkvQUFBQUFBQUFF/YWMvdnpKYWtQNVdj/XzAvczE2MDAvYnVy/cm91Z2hzLmpwZw",
   },
 ];
 
@@ -96,18 +96,21 @@ productos.forEach((product) => {
 
 //function to paint carrito
 const paintCarritoElements = () => {
+  carritoContent.style.display = "block";
   //clean and update carrito content
   carritoContent.innerHTML = "";
+
   carrito.forEach((product) => {
     let contentCarrito = document.createElement("div");
+
+    contentCarrito.className = "modalContent";
+
     contentCarrito.innerHTML = `
-            <img src="${product.img}">
-            <h3>${product.name}</h3>
+            <h2>${product.name}</h2>
             <h4>${product.price} $</h4>
-           
+            
             `;
     carritoContent.append(contentCarrito);
-
     deleteProduct = document.createElement("button");
     deleteProduct.className = "delete";
     deleteProduct.innerText = "delete product";
@@ -119,7 +122,16 @@ const paintCarritoElements = () => {
   });
 };
 
+// When the user clicks anywhere outside of the modal, close it
+carritoContent.onclick = function (event) {
+  if (event.target == carritoContent) {
+    carritoContent.style.display = "none";
+  }
+};
+
 seeCarrito.addEventListener("click", paintCarritoElements);
+
+// When the user clicks anywhere outside of the modal, close it;
 
 //function for delete product
 const deleteProductItem = () => {
