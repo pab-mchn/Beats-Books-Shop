@@ -141,9 +141,14 @@ body {
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
 }
+
+.modal > img {
+  height: 60px;
+  width: 40px;
+}
 .modal > .totalBuying {
   text-align: end;
-  width: 60%;
+  width: 70%;
   padding: 8px;
   margin: 0 auto;
   background-color: black;
@@ -156,7 +161,24 @@ body {
   margin: 0 auto;
   padding: 8px;
   border: 1px solid #888;
-  width: 60%;
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.modalContent > img {
+  height: 120px;
+  width: 100px;
+}
+
+.modalContent > h4 {
+  margin-top: 50px;
+}
+
+.modalContent > i {
+  margin-top: 50px;
+  color: red;
 }
 
 /* The Close Button */

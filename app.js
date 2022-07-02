@@ -107,23 +107,26 @@ const paintCarritoElements = () => {
     contentCarrito.className = "modalContent";
 
     contentCarrito.innerHTML = `
-            <h4>${product.author} - ${product.name} - ${product.price}$ </h4>`;
+            <img src="${product.img}"/>
+            <h4>${product.author}</h4>
+            <h4>${product.name}</h4>
+            <h4>${product.price}$ </h4>
+            `;
 
     carritoContent.append(contentCarrito);
-    deleteProduct = document.createElement("button");
-    deleteProduct.className = "delete";
-    deleteProduct.innerText = "delete product";
+    deleteProduct = document.createElement("i");
+    deleteProduct.className = "fa-solid fa-trash-can";
 
     contentCarrito.append(deleteProduct);
 
     //call de function for delete item
     deleteProduct.addEventListener("click", deleteProductItem);
   });
-
+  //final price
   const total = carrito.reduce((acc, el) => acc + el.price, 0);
   const totalBuying = document.createElement("div");
   totalBuying.className = "totalBuying";
-  totalBuying.innerHTML = `total:  ${total} $`;
+  totalBuying.innerHTML = `Total:  ${total} $`;
   carritoContent.append(totalBuying);
 };
 
@@ -156,11 +159,3 @@ const deleteProductItem = () => {
   //update carrito elemente after remove items
   paintCarritoElements();
 };
-
-//pagar y sumar total
-finishBuying.addEventListener("click", () => {
-  const total = carrito.reduce((acc, el) => acc + el.price, 0);
-  const totalBuying = document.createElement("h1");
-  totalBuying.innerHTML = `the final price is:  ${total} $`;
-  totalCarrito.append(totalBuying);
-});
