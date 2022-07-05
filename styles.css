@@ -143,19 +143,6 @@ body {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal > img {
-  height: 60px;
-  width: 40px;
-}
-.modal > .totalBuying {
-  text-align: end;
-  width: 70%;
-  padding: 8px;
-  margin: 0 auto;
-  background-color: black;
-  color: #fff;
-}
-
 /* Modal Content/Box */
 .modalContent {
   background-color: #fefefe;
@@ -166,11 +153,6 @@ body {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-}
-
-.modalContent > header {
-  height: 40px;
-  color: black;
 }
 
 .modalContent > img {
@@ -184,9 +166,31 @@ body {
 
 .modalContent > i {
   margin-top: 50px;
-  color: red;
+  color: #fc211acc;
+}
+i:hover {
+  cursor: pointer;
+}
+.modal > .totalBuying {
+  text-align: end;
+  width: 70%;
+  padding: 8px;
+  margin: 0 auto;
+  background-color: black;
+  color: #fff;
+}
+.modal > .payContent {
+  text-align: center;
+  width: 70%;
+  padding: 8px;
+  margin: 0 auto;
+  background-color: red;
 }
 
+.payContent > a {
+  text-decoration: none;
+  color: #fff;
+}
 @media (max-width: 750px) {
   .modalContent {
     display: flex;

@@ -79,6 +79,13 @@ const paintCarritoElements = () => {
     totalBuying.className = "totalBuying";
     totalBuying.innerHTML = `Total:  ${total} $`;
     carritoContent.append(totalBuying);
+
+    //create pay link button
+    const payContent = document.createElement("div");
+    payContent.className = "payContent";
+    payContent.innerHTML =
+      "<a href='https://www.mercadopago.com.ar/point/invite?device=46&code=QVZ9MNT0P4&utm_source=share_mgm_web&utm_medium=APP&matt_tool=&matt_word='>Pay Products</a>";
+    carritoContent.append(payContent);
   } else {
     //if carrito is empty, is not possible to see
     carritoContent.style.display = "none";
