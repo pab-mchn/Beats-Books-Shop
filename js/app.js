@@ -4,7 +4,8 @@ carritoContent = document.getElementById("carrito-content");
 totalCarrito = document.getElementById("totalCarrito");
 seeCarrito = document.getElementById("seeCarrito");
 showAlert = document.getElementById("showAlert");
-let paymentContent = document.getElementById("paypal-payment-content");
+paymentContent = document.getElementById("paypal-payment-content");
+paypalButtonContainer = document.getElementById("paypal-button-container");
 
 paymentContent.style.display = "none";
 
@@ -91,6 +92,8 @@ const paintCarritoElements = () => {
 
     payContent.addEventListener("click", () => {
       paymentContent.style.display = "block";
+      paypalButtonContainer.innerHTML = "";
+      const total = carrito.reduce((acc, el) => acc + el.price, 0);
 
       paypal
         .Buttons({
@@ -99,18 +102,32 @@ const paintCarritoElements = () => {
               purchase_units: [
                 {
                   amount: {
-                    value: "0.01", //Precio del producto
+                    value: total, //final price
                   },
                 },
               ],
             });
           },
           onApprove: function (data, actions) {
-            //En pago aprovado
+            //in aproved payment
             return actions.order.capture().then(function (details) {
               //Aqui van las instrucciones que deseamos realize una vez procese el pago
               //En mi caso solo muestra el mensaje: Pago realizado por: <nombreDeCuenta>
-              alert("Pago realizado por:" + details.payer.name.given_name);
+              showAlert.innerHTML = "";
+              let contentAlert = document.createElement("span");
+
+              contentAlert.innerHTML = `
+                <span><strong>Yay!</strong> thanks ${details.payer.name.given_name} 🎉 your payment has been completed .</span>
+                `;
+              showAlert.append(contentAlert);
+
+              showAlert.style.display = "block";
+
+              function cleanAlert() {
+                showAlert.style.display = "none";
+              }
+
+              setTimeout(cleanAlert, 4000);
               // Instrucciones para el servidor:
               return fetch("/paypal-transaction-complete", {
                 method: "post",
@@ -137,6 +154,12 @@ const paintCarritoElements = () => {
 carritoContent.onclick = function (event) {
   if (event.target == carritoContent) {
     carritoContent.style.display = "none";
+  }
+};
+
+paymentContent.onclick = function (event) {
+  if (event.target == paymentContent) {
+    paymentContent.style.display = "none";
   }
 };
 
