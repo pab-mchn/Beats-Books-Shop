@@ -186,6 +186,7 @@ i:hover {
   margin: 0 auto;
   background-color: red;
   color: #fff;
+  cursor: pointer;
 }
 
 @media (max-width: 750px) {

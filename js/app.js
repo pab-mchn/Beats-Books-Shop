@@ -7,8 +7,6 @@ showAlert = document.getElementById("showAlert");
 paymentContent = document.getElementById("paypal-payment-content");
 paypalButtonContainer = document.getElementById("paypal-button-container");
 
-paymentContent.style.display = "none";
-
 //carrito start with the value of the localStorage content or an empty array
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
@@ -90,8 +88,12 @@ const paintCarritoElements = () => {
     payContent.innerHTML = "Pay";
     carritoContent.append(payContent);
 
+    paymentContent.style.display = "none";
+
     payContent.addEventListener("click", () => {
+      carritoContent.style.display = "none";
       paymentContent.style.display = "block";
+      //clean the payment buttons
       paypalButtonContainer.innerHTML = "";
       const total = carrito.reduce((acc, el) => acc + el.price, 0);
 
@@ -111,8 +113,8 @@ const paintCarritoElements = () => {
           onApprove: function (data, actions) {
             //in aproved payment
             return actions.order.capture().then(function (details) {
-              //Aqui van las instrucciones que deseamos realize una vez procese el pago
-              //En mi caso solo muestra el mensaje: Pago realizado por: <nombreDeCuenta>
+              //instruction after the payment is procesing
+              paymentContent.style.display = "none";
               showAlert.innerHTML = "";
               let contentAlert = document.createElement("span");
 
@@ -128,7 +130,7 @@ const paintCarritoElements = () => {
               }
 
               setTimeout(cleanAlert, 4000);
-              // Instrucciones para el servidor:
+              // instructions for the server
               return fetch("/paypal-transaction-complete", {
                 method: "post",
                 headers: {
@@ -138,7 +140,7 @@ const paintCarritoElements = () => {
                   orderID: data.orderID,
                 }),
               });
-              //fin de instruciones para el servidor
+              //end of the server instruction
             });
           },
         })
