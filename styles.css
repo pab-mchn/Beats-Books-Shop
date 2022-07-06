@@ -176,7 +176,7 @@ i:hover {
   width: 70%;
   padding: 8px;
   margin: 0 auto;
-  background-color: black;
+  background-color: #1b1b1b;
   color: #fff;
 }
 .modal > .payContent {
@@ -185,12 +185,9 @@ i:hover {
   padding: 8px;
   margin: 0 auto;
   background-color: red;
-}
-
-.payContent > a {
-  text-decoration: none;
   color: #fff;
 }
+
 @media (max-width: 750px) {
   .modalContent {
     display: flex;
@@ -230,4 +227,31 @@ footer {
   color: #fff;
   display: flex;
   justify-content: space-around;
+}
+
+/*paypal payment styles*/
+.paymentModal {
+  display: none;
+  position: fixed;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  z-index: 5;
+  top: 12vh;
+  left: 0;
+  width: 100%;
+  height: 88vh;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.paymentModalContain {
+  background-color: #fefefe;
+  margin: 0 auto;
+  padding: 8px;
+  border: 1px solid #888;
+  width: 70%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 10%;
 }

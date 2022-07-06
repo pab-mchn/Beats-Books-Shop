@@ -4,6 +4,9 @@ carritoContent = document.getElementById("carrito-content");
 totalCarrito = document.getElementById("totalCarrito");
 seeCarrito = document.getElementById("seeCarrito");
 showAlert = document.getElementById("showAlert");
+let paymentContent = document.getElementById("paypal-payment-content");
+
+paymentContent.style.display = "none";
 
 //carrito start with the value of the localStorage content or an empty array
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -83,9 +86,47 @@ const paintCarritoElements = () => {
     //create pay link button
     const payContent = document.createElement("div");
     payContent.className = "payContent";
-    payContent.innerHTML =
-      "<a href='https://www.mercadopago.com.ar/point/invite?device=46&code=QVZ9MNT0P4&utm_source=share_mgm_web&utm_medium=APP&matt_tool=&matt_word='>Pay Products</a>";
+    payContent.innerHTML = "Pay";
     carritoContent.append(payContent);
+
+    payContent.addEventListener("click", () => {
+      paymentContent.style.display = "block";
+
+      paypal
+        .Buttons({
+          createOrder: function (data, actions) {
+            return actions.order.create({
+              purchase_units: [
+                {
+                  amount: {
+                    value: "0.01", //Precio del producto
+                  },
+                },
+              ],
+            });
+          },
+          onApprove: function (data, actions) {
+            //En pago aprovado
+            return actions.order.capture().then(function (details) {
+              //Aqui van las instrucciones que deseamos realize una vez procese el pago
+              //En mi caso solo muestra el mensaje: Pago realizado por: <nombreDeCuenta>
+              alert("Pago realizado por:" + details.payer.name.given_name);
+              // Instrucciones para el servidor:
+              return fetch("/paypal-transaction-complete", {
+                method: "post",
+                headers: {
+                  "content-type": "application/json",
+                },
+                body: JSON.stringify({
+                  orderID: data.orderID,
+                }),
+              });
+              //fin de instruciones para el servidor
+            });
+          },
+        })
+        .render("#paypal-button-container");
+    });
   } else {
     //if carrito is empty, is not possible to see
     carritoContent.style.display = "none";
