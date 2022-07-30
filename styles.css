@@ -260,3 +260,30 @@ footer {
   flex-wrap: wrap;
   margin-top: 10%;
 }
+
+/*Search-Bar*/
+
+.search-products-container {
+  text-align: center;
+  padding: 30px;
+  background-color: #1b1b1b;
+}
+.search-products {
+  padding: 10px;
+  color: #565555;
+  width: 300px;
+}
+
+.suggestions {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 15px;
+  margin-left: 80px;
+  margin-right: 80px;
+}
+
+.suggestionText {
+  margin-top: 30px;
+  color: red;
+}

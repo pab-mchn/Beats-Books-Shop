@@ -16,11 +16,7 @@
         <i id="seeCarrito" class="fa-solid fa-cart-shopping"></i>
       </nav>
     </div>
-    <div
-      id="showAlert"
-      class="flash flash-success alert alert-dismissible fade show"
-      role="alert"
-    ></div>
+    <div id="showAlert" class="flash flash-success alert alert-dismissible fade show" role="alert"></div>
 
     <div id="paypal-payment-content" class="paymentModal">
       <div class="paymentModalContain">
@@ -43,10 +39,25 @@
         <a class="btn btn-flat" href="#shopContent">Start now</a>
       </div>
     </div>
+
+    <!--search-bar-content-->
+    <div class="search-products-container input-wrapper">
+      <input class="search-products input" type="text" placeholder="Search Books for Authors or Name" />
+    </div>
+
+    <div class="suggestions"></div>
+
+    <!--shop-content-->
     <div id="shopContent"></div>
+
     <footer><h4>Beats Books Shop</h4></footer>
+
     <script src="./js/data.js"></script>
     <script src="./js/app.js"></script>
+    <script src="./js/modals.js"></script>
+    <script src="./js/searchBar.js"></script>
+    <script src="./js/alert.js"></script>
+    <script src="./js/carrito.js"></script>
     <script src="https://www.paypal.com/sdk/js?client-id=Aag7jGiYPZGVhJjPBm2sH_QFocIpXr3IyYYmbO12RXJDYf3xwvPZ0ePIfm3XQ_21mBj3v_grCrHzGYD3&currency=EUR"></script>
   </body>
 </html>
