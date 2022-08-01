@@ -42,3 +42,11 @@ productos.forEach((product) => {
     console.log(carrito);
   });
 });
+
+//link in logo to go to the top
+//
+const navbarLogo = document.getElementById("navbar-logo");
+
+navbarLogo.addEventListener("click", () => {
+  window.scrollTo(0, 0);
+});
